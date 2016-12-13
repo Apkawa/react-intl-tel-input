@@ -26,6 +26,8 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
+    "lodash.trimstart": "^4.5.1",
+    "react-input-mask": "^0.7.5",
     "underscore.deferred": "^0.4.0"
   },
   "devDependencies": {

@@ -35,12 +35,16 @@ class DemoComponent extends React.Component {
     this.state = {
       phone1: '',
       phone2: '',
+      phone3: '',
+      phone4: '',
     };
   }
 
   componentWillMount() {
     this.changePhone1 = this.changeHandler.bind(this, 'phone1');
     this.changePhone2 = this.changeHandler.bind(this, 'phone2');
+    this.changePhone3 = this.changeHandler.bind(this, 'phone3');
+    this.changePhone4 = this.changeHandler.bind(this, 'phone4');
   }
 
   changeHandler(name, isValid, value, countryData, number, ext) {
@@ -75,8 +79,33 @@ class DemoComponent extends React.Component {
           value={this.state.phone2}
           css={['intl-tel-input', 'form-control']}
           utilsScript="assets/libphonenumber.js"
+          separateDialCode={true}
         />
         <div>Phone Number: {this.state.phone2}</div>
+
+        <IntlTelInput
+          enableMask={true}
+          onPhoneNumberChange={this.changePhone3}
+          onPhoneNumberBlur={this.blurHandler}
+          defaultCountry={'ru'}
+          value={this.state.phone3}
+          css={['intl-tel-input', 'form-control']}
+          utilsScript="assets/libphonenumber.js"
+          separateDialCode={false}
+          nationalMode={false}
+        />
+        <div>Phone Number: {this.state.phone4}</div>
+        <IntlTelInput
+          enableMask={true}
+          onPhoneNumberChange={this.changePhone4}
+          onPhoneNumberBlur={this.blurHandler}
+          defaultCountry={'ru'}
+          value={this.state.phone4}
+          css={['intl-tel-input', 'form-control']}
+          utilsScript="assets/libphonenumber.js"
+          separateDialCode={true}
+        />
+        <div>Phone Number: {this.state.phone4}</div>
       </div>
     );
   }

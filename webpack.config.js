@@ -6,11 +6,11 @@
  */
 
 var webpack = require('webpack'),
-    path = require('path');
+  path = require('path');
 var eslintrcPath = path.resolve(__dirname, '.eslintrc');
 
 module.exports = {
-  devtool: 'eval',
+  devtool: 'eval-source-map',
   watch: true,
   output: {
     filename: '[name].js',
@@ -27,10 +27,10 @@ module.exports = {
     ]
   },
 
-  externals: {
-    react: 'React',
-    'react-dom': 'ReactDOM'
-  },
+  // externals: {
+  //   react: 'React',
+  //   'react-dom': 'ReactDOM'
+  // },
 
   stats: {
     colors: true,

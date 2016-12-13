@@ -1,4 +1,5 @@
 import AllCountries from './AllCountries';
+import trimStart from 'lodash.trimstart'
 
 export default {
   arraysEqual(a, b) {
@@ -101,7 +102,7 @@ export default {
   offset(elem) {
     let docElem = undefined;
     let win = undefined;
-    let box = { top: 0, left: 0 };
+    let box = {top: 0, left: 0};
     const doc = elem && elem.ownerDocument;
 
     docElem = doc.documentElement;
@@ -120,8 +121,8 @@ export default {
   // retrieve outerHeight of element
   getOuterHeight(element) {
     return element.offsetHeight +
-           parseFloat(window.getComputedStyle(element).getPropertyValue('margin-top')) +
-           parseFloat(window.getComputedStyle(element).getPropertyValue('margin-bottom'));
+      parseFloat(window.getComputedStyle(element).getPropertyValue('margin-top')) +
+      parseFloat(window.getComputedStyle(element).getPropertyValue('margin-bottom'));
   },
 
   // find the country data for the given country code
@@ -172,5 +173,17 @@ export default {
       const reg = new RegExp(`(\\s|^)${className}(\\s|$)`);
       el.className = el.className.replace(reg, ' ');
     }
+  },
+
+  placeholderToMask(placeholder, dialCode) {
+    if (dialCode && !dialCode.startsWith('+')) {
+      dialCode = `+${dialCode}`
+    }
+    let mask = trimStart(placeholder, dialCode).replace(/\d/g, 9)
+    if (dialCode) {
+      dialCode = dialCode.replace(/[9]/g, '\\9')
+      return `${dialCode}${mask}`
+    }
+    return mask
   },
 };
